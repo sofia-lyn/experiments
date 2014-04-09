@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>CSS Border effect</title>
+	<style type="text/css">
+		body {
+			background: #f0f0e8;
+		}
+		.wrapper{
+			margin: 10% auto;
+			width: 90%;
+			text-align: center;
+		}
+		.box{
+			width: 280px;
+			height: 400px;
+			display:inline-block;
+			position: relative;
+			overflow: hidden;
+			background: #c5e0d3;
+			margin: 2.5% 1.5%;
+		}
+		svg{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		svg line{
+			stroke-width: 18;
+			stroke: #fff;
+			fill:none;
+			stroke-dasharray:280;
+			-webkit-transition:-webkit-transform .6s ease-out;
+			transition: transform .6s ease-out;
+		}
+		svg line.vertical{
+			stroke-dasharray:400;
+		}
+		.box:hover svg line.top{
+			-webkit-transform:translateX(-560px);
+			transform:translateX(-560px);
+		}
+		.box:hover svg line.left{
+			-webkit-transform:translateY(800px);
+			transform:translateY(800px);
+		}
+		.box:hover svg line.right{
+			-webkit-transform:translateY(-800px);
+			transform:translateY(-800px);
+		}
+		.box:hover svg line.bottom{
+			-webkit-transform:translateX(560px);
+			transform:translateX(560px);
+
+		}
+		span{
+			display:block;
+			width:280px;
+			height: 400px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+		
+			<div class="box">
+				<!-- http://www.colourlovers.com/pattern/2484955/Singin_in_the_garden -->
+				
+				<span style="background:url('p1.png');"></span>
+
+				<svg width="280" height="400">
+					<!-- setting svg position absolute -->
+					<line class="top" x1="0" y1="0" x2="840" y2="0" />
+					<line class="left vertical"x1="0" y1="400" x2="0" y2="-1200" />
+					<line class="right vertical"x1="280" y1="0" x2="280" y2="1200" />
+					<line class="bottom"x1="280" y1="400" x2="-840" y2="400" />
+				</svg>
+			</div>
+			<div class="box">
+				<!-- http://www.colourlovers.com/pattern/2484955/Singin_in_the_garden -->
+				
+				<span style="background:url('p2.png');"></span>
+
+				<svg width="280" height="400">
+					<!-- setting svg position absolute -->
+					<line class="top" x1="0" y1="0" x2="840" y2="0" />
+					<line class="left vertical"x1="0" y1="400" x2="0" y2="-1200" />
+					<line class="right vertical"x1="280" y1="0" x2="280" y2="1200" />
+					<line class="bottom"x1="280" y1="400" x2="-840" y2="400" />
+				</svg>
+			</div>
+			<div class="box">
+				<!-- http://www.colourlovers.com/pattern/2484955/Singin_in_the_garden -->
+				
+				<span style="background:url('p3.png');"></span>
+
+				<svg width="280" height="400">
+					<!-- setting svg position absolute -->
+					<line class="top" x1="0" y1="0" x2="840" y2="0" />
+					<line class="left vertical"x1="0" y1="400" x2="0" y2="-1200" />
+					<line class="right vertical"x1="280" y1="0" x2="280" y2="1200" />
+					<line class="bottom"x1="280" y1="400" x2="-840" y2="400" />
+				</svg>
+			</div>
+			<div class="box">
+				<!-- http://www.colourlovers.com/pattern/2484955/Singin_in_the_garden -->
+				
+				<span style="background:url('p4.png');"></span>
+
+				<svg width="280" height="400">
+					<!-- setting svg position absolute -->
+					<line class="top" x1="0" y1="0" x2="840" y2="0" />
+					<line class="left vertical"x1="0" y1="400" x2="0" y2="-1200" />
+					<line class="right vertical"x1="280" y1="0" x2="280" y2="1200" />
+					<line class="bottom"x1="280" y1="400" x2="-840" y2="400" />
+				</svg>
+			</div>
+		
+	</div>
+</body>
+
+</html>
