@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>jQuery and XML</title>
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+ <meta name="language" content="en" />
+ <link rel="stylesheet" type="text/css" href="css/normalize.css">
+ <link rel="stylesheet" type="text/css" href="css/style.css">
+ <link rel="stylesheet" type="text/css" href="css/weather-icons.css">
+ <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,900' rel='stylesheet' type='text/css'>
+ <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+<header>
+	<h1>Weather</h1>
+</header>
+<section id="melb" data-citynum="55864247">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+
+</section>
+
+<section id="syd" data-citynum="1105779">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="canb" data-citynum="1100968">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="ban" data-citynum="1100661">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="perth" data-citynum="1098081">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="ade" data-citynum="1099805">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="hob" data-citynum="1102670">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>
+</section>
+<section id="dar" data-citynum="1101597">
+	<i class="wi"></i>
+	<h1 class="city-name"></h1>
+	<p class="w-text"></p>
+	<h3 class="temp">C&deg;</h3>
+	<div class="forecast">
+		<ul>
+			<li class="fDay1"></li>
+			<li class="fDay2"></li>
+			<li class="fDay3"></li>
+		</ul>
+	</div>  
+</section>
+
+<script type="text/javascript">
+	var $wIcon = {
+ 		0: 'wi-tornado', 1: 'wi-thunderstorm', 2: 'wi-hurricane', 3: 'wi-thunderstorm', 4: 'wi-thunderstorm', 5: 'wi-rain-mix', 6: 'wi-day-rain-mix', 7:'wi-day-snow', 8: 'wi-snow', 9:'wi-sprinkle', 10: 'wi-rain', 11:'wi-showers', 12: 'wi-showers', 13: 'wi-snow', 14: 'wi-snow', 15:'wi-snow-wind', 16:'wi-snow', 17: 'wi-hail', 18: 'wi-rain-mix', 19:'wi-dust', 20: 'wi-fog', 21:'wi-cloudy', 22: 'wi-smoke', 23: 'wi-strong-wind', 24:'wi-windy', 25:'wi-snowflake-cold', 26:'wi-cloudy', 27: 'wi-night-cloudy', 28:'wi-day-cloudy', 29:'wi-night-partly-cloudy', 30: 'wi-day-sunny-overcast', 31:'wi-night-clear', 32:'wi-day-sunny', 33:'wi-night-partly-cloudy', 34:'wi-day-sunny-overcast', 35:'wi-rain-mix', 36:'wi-hot', 37:'wi-thunderstorm', 38:'wi-thunderstorm', 39:'wi-thunderstorm', 40:'wi-showers', 41:'wi-snow', 42:'wi-rain-mix', 43:'wi-snow', 44:'wi-cloudy', 45:'wi-storm-showers', 46:'wi-showers', 47:'wi-thunderstorm', 3200:'wi-alien'
+ 	};
+
+ 	function weatherIcon(w, path){
+ 		for (var key in $wIcon){
+	    	if(w == key){
+	    		path.addClass($wIcon[key]);
+	    	}
+   		}
+ 	}
+ function weatherCall(city){
+ 	
+ 	var $cityNum = city.data('citynum') ;
+  	var url = "https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20weather.forecast%20where%20woeid%3D"+ $cityNum +"%20and%20u%20%3D%20%22c%22&format=json&diagnostics=true&callback="; 
+  	//calling Yahoo weather and obtain weather info
+	$.getJSON(url, function(data) {
+		var results = data.query.results.channel;
+		var $cityName = results.location.city;
+		var $weatherCon = results.item.condition.text;
+		var $temp = results.item.condition.temp;
+		var $wCode = results.item.condition.code;
+		var $forecast = results.item.forecast;	
+		//create next forecast day into array
+		var $fDay = [];	
+  		// find matching weather code and bind with weather icon to each city
+   		weatherIcon($wCode, city.children('.wi'));
+   		   		    console.log($cityName + ' ' + $wCode);
+
+   		//loop thru forecast and store them into $fDay array, find each fDay class and insert info
+		for(var i = 1; i < $forecast.length - 1; i++){
+   			$fDay[i] = $('<span>' + $forecast[i].day + '</span>' + '<span>' + $forecast[i].low + '-' + $forecast[i].high + '</span>' + '<i class="wi"></i>');
+   		    city.children('.forecast').find('.fDay'+i).html($fDay[i]);
+   		    //adding weather icon for each day
+   		    weatherIcon($forecast[i].code, city.children('.forecast').find('.fDay'+i).find('i') );
+   		    
+   		}
+   		city.children('h1').text($cityName);
+   		city.children('h3').text($temp + "C\u00B0");
+   		city.children('.w-text').text($weatherCon);
+   		
+
+	});
+ }
+var melbourne = weatherCall($('#melb'));
+var sydney = weatherCall($('#syd'));
+var canberra = weatherCall($('#canb'));
+var brisbane = weatherCall($('#ban'));
+var perth = weatherCall($('#perth'));
+var adelaide = weatherCall($('#ade'));
+var hobart = weatherCall($('#hob'));
+var darwin = weatherCall($('#dar'));
+
+
+</script>
+
+
+</body>
+</html>

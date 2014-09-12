@@ -1,0 +1,95 @@
+var map,
+      center,
+      service, 
+      marker,
+      bounds,
+      infowindow,
+      request,
+      placeReference;
+      
+    
+  
+  var cafeList = [
+    ['Wide Open Road', -37.776451,144.961192,17],
+    ['St Ali Coffee Roasters', -37.831233,144.960377,17],
+    ['Market Lane Coffee', -37.845757,144.993288,17]
+  ];
+  //initial google map
+  function initialize() {
+    
+    var mapOptions = {
+      center: new google.maps.LatLng(-37.8269353,144.9519),
+      zoom: 12
+    };
+    map = new google.maps.Map(document.getElementById("map"), mapOptions); 
+
+    setMarker(map, cafeList);
+
+  }
+  
+  //loop thru cafe list and add marker accordingly 
+  function setMarker(map, location){
+    service = new google.maps.places.PlacesService(map);
+    for(var i = 0; i < location.length; i++){
+      var cafe = location[i];
+      var cafeLocation = new google.maps.LatLng(cafe[1], cafe[2]);
+      request = {
+        location: cafeLocation,
+        radius: 1,
+        query: cafe[0]
+      };
+      
+      service.textSearch(request, callback);
+      setInfo(cafe[0], cafeLocation, marker);
+      console.log(request);
+    }
+    function callback (results, status) {  
+      
+      if (status == google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+          if(results[i].name === request.query){
+            createReference(results[i].reference);
+          }
+        }
+      }
+    }
+    function createReference(reference){
+      placeReference = {};
+      reference = placeReference.reference;
+    }
+    console.log(placeReference);
+    function setInfo(msg, location, marker){
+
+      marker = new google.maps.Marker({
+        position: location,
+        map: map
+        
+      });
+
+      service.getDetails(placeReference, function(place, status){
+        if(status == google.maps.places.PlacesServiceStatus.OK){
+
+          console.log(place.name + place.rating );
+        }
+      });
+    //listening click to the marker
+    google.maps.event.addListener(marker, 'click', function(){
+      //close previous winfow if there is any open
+      if(infowindow){infowindow.close();} 
+      infowindow = new google.maps.InfoWindow({
+        content: msg
+      });
+      infowindow.open(marker.get('map'), marker);
+      
+      });
+    }
+}
+
+   //places search call back
+
+
+  
+
+
+
+ initialize();

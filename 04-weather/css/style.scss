@@ -1,0 +1,176 @@
+/*--- vartiables --*/
+$lato: 'Lato'; //font-weight- 300(light), 400(normal), 700(bold), 900(ultra bold)
+
+//color
+$melbourne: #9799cc;
+$sydney:#ff8585;
+$canberra:#ffc154;
+$brisbane:#f3d957;
+$perth: #6ae69c;
+$adelaide:#40c2de;
+$hobart:#418cbc;
+$darwin:#dd7357;
+/***** general *******/
+body{
+	background-color: #e7e7e7;
+}
+/***** type *******/
+h1, h2, h3, h4, h5, h6, p, ul, li{
+	font-family: $lato, sans-serif;
+}
+h1{
+	font-size: 1.75em;
+	font-weight: 400;
+	margin-bottom: 0.15em;
+}
+h3{
+	font-weight: 900;
+	font-size: 2em;
+	margin-bottom: 1em;
+	margin-top:0.5em;
+}
+header {
+	display: block;
+	background-color: #e7e7e7;
+	text-align: center;
+	padding: 0;
+	margin: 2%;
+	h1{
+		font-weight: 300;
+	}
+}
+
+/*--- weather sections --*/
+
+section{
+	display: inline-block;
+	width: 25%;
+	color: white;
+	margin-right: -5px;
+	position: relative;
+	perspective: 1000px;
+	perspective-origin: 50% 25%;
+	text-align: center;
+	
+	&:hover{
+	}
+
+	i.wi{
+		font-size: 8em;
+		margin: 23% 10% 16%;
+	}
+	
+	h3{
+		letter-spacing: 1px;
+	}
+	p{
+		margin:0 0 1em;
+		font-weight: 300;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+		list-style-position: inside;
+	}
+}
+
+/*--- forecast days --*/
+.forecast li{
+	display: inline-block;
+	background-color: rgba(250,250,250, 0.4);
+	margin: 1% 0.25% 5% 1.5%;
+	font-size:0.75em;
+	width: 29%;
+	span {
+		padding:5% 5%;
+		&:first-child{
+			float:left;
+		}
+		&:nth-child(2){
+			float:right;
+			margin-bottom: 12%;
+		}
+	}
+	.wi{
+		font-size:2.5em;
+		padding: 15% 15%;
+	}
+}
+/*--- weather icon --*/
+
+
+/*--- cities --*/
+
+#melb{
+	background-color:$melbourne; 
+	
+}
+#syd{
+	background-color: $sydney;
+}
+#canb{
+	background-color: $canberra;
+}
+#ban{
+	background-color: $brisbane;
+	.forecast li{
+		background-color: rgba(253,240,175, 0.5);
+
+	}
+}
+#perth{
+	background-color: $perth;
+}
+#ade{
+	background-color: $adelaide;
+}
+#hob{
+	background-color: $hobart;
+}
+#dar{
+	background-color: $darwin;
+}
+
+/*--- screen --*/
+@media only screen and (max-width: 768px){
+	section{
+		i.wi{
+			font-size: 5em;
+		}
+		h1{
+			font-size: 1.5em;
+		}
+		h3{
+			font-size: 1.6em;
+			letter-spacing: 2px;
+		}
+		p{
+			font-size: 1em;
+		}
+	}
+	.forecast {
+		margin-bottom: 8%;
+		li{
+			width: 87%;
+			margin: 2% 7%;
+			.wi{
+				padding: 3% 8% 6%;
+				margin: 8% 2% 3%;
+				float: right;
+				font-size:3.5em;
+			}
+			span{
+				position: absolute;
+				display: block;
+				font-size: 1.4em;
+				&:nth-child(2){
+					float:left;
+					margin-top:11%;
+					}
+			}
+		}
+	}
+}

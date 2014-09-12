@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100%; }
+      body, #container { height: 100%; margin: 0; padding: 0; }
+      #container{
+        position: relative;
+        
+      }
+    
+      .info{
+        width: 40%;
+        height: 100%;
+        background: #303030;
+        float: left;
+        
+      }
+        #map { height: 100%; width:60%; margin: 0; padding: 0;}
+        .address li{
+          padding: 5%;
+          background: white;
+          margin: 5%;
+          list-style: none;
+        }
+    </style>
+    
+    
+  </head>
+  <body>
+    <header></header>
+    <div id="container">
+      <div class="info">
+        <ul class="address">
+          <li>53 Evans St, Brunswick, Victoria, Australia</li>
+          <li>274 BARKLY ST, BRUNSWICK Victoria, Australia</li>
+        </ul>
+      </div>
+      <div id="map"></div>
+    </div>
+
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyClszREAVLF5hNl5WciWIjN4jeorcodWP4&sensor=false">
+    </script>
+
+    <script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="js/app.js"></script>
+   
+  </body>
+</html>

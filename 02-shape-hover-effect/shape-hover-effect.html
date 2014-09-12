@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Shape hover effect</title>
+		<script type="text/javascript" src="js/snap.svg-min.js"></script>
+		<style type="text/css">
+			.grid{
+				margin: 40px auto 120px;
+				max-width: 1000px;
+				width: 90%;
+			}
+			.grid a {
+				max-width: 250px;
+				float: left;
+				width: 25%;
+				color: #333;
+			}
+			.grid a:nth-child(odd){
+				margin: 30px 0 -30px 0;
+			}
+
+			.grid figure{
+				border: 2px solid #333333;
+				position: relative;
+				overflow: hidden;
+				margin: 5px;
+				min-height: 400px;
+				background-color: #333;
+			}
+			.grid figure img{
+				position: relative;
+				display: block;
+				width: 100%;
+				opacity: 0.7;
+				transition: opacity 0.3s;
+			}
+			.grid figcaption{
+				position: absolute;
+				top: 0;
+				z-index: 11;
+				padding: 10px;
+				width: 100%;
+				height: 100%;
+				text-align: center;
+			}
+			.grid figcaption h2{
+				margin: 0 0 20px 0;
+				color: #3498db;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-weight: 300;
+				font-size: 130%;
+				transition: transform 0.3s;
+			}
+			.grid figcaption p{
+				padding: 0 20px;
+				color: #aaa;
+				font-weight: 300;
+				transition: opacity 0.3s, transform 0.3s;
+			}
+			.grid figcaption h2, .grid figcaption p{
+				transform: translateY(50px);
+			}
+			/* avoid backface while animating */
+			.grid figcaption, .grid figcaption h2, .grid figcaption p, .grid figcaption button{
+				backface-visibility: hidden;
+			}
+			.grid figure button {
+				position: absolute;
+				padding: 4px 20px;
+				border: none;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-weight: bold;
+				transition: opacity 0.3s, transform 0.3s;
+			}
+			.grid svg {
+				position: absolute;
+				top: -1px; /* fixes rendering issue in FF */
+				z-index: 10;
+				width: 100%;
+				height: 100%;
+			}
+			.grid svg path{
+				fill: #fff;
+			}
+			/* hover effects for the anchor */
+			.grid a:hover figure img{
+				opacity:1;
+			}
+			.grid a:hover figcaption h2, .grid a:hover figcaption p{
+				transform: translateY(0);
+			}
+			.grid a:hover figcaption p{
+				opacity: 0;
+			}
+			/* style 1 */
+			body {
+				background: #3498db;
+			}
+			.grid figure button{
+				top:50%;
+				left:50%;
+				border: 3px sold #fff;
+				background: transparent;
+				color: #fff;
+				opacity: 0;
+				transform: translateY(-50%) translateX(-50%) scale(0.25);
+			}
+			.grid a:hover figure button{
+				opacity: 1;
+				transform: translateY(-50%) translateX(-50%) scale(1);
+			}
+
+		</style>
+	</head>
+	<body>
+		<section id="grid" class="grid clearfix">
+			<a href="#" data-path-hover="m 180,34.57627 -180,0 L 0,0 180,0 z">
+				<figure>
+					<img src="1.png" />
+					<svg viewBox = "0 0 180 320" preserveAspectRatio="none" >
+						<path d="M 180,160 0,218 0,0 180,0 z "/>
+					</svg>
+					<figcaption>
+						<h2>Title</h2>
+						<p>Caption</p>
+						<button>Take a look!</button>
+					</figcaption>
+				</figure>
+			</a>
+			
+		</section>
+		<script type="text/javascript">
+			(function() {
+     
+    function init() {
+        var speed = 250,
+            easing = mina.easeinout;
+ 
+        [].slice.call ( document.querySelectorAll( '#grid > a' ) ).forEach( function( el ) {
+            var s = Snap( el.querySelector( 'svg' ) ), path = s.select( 'path' ),
+                pathConfig = {
+                    from : path.attr( 'd' ),
+                    to : el.getAttribute( 'data-path-hover' )
+                };
+ 
+            el.addEventListener( 'mouseenter', function() {
+                path.animate( { 'path' : pathConfig.to }, speed, easing );
+            } );
+ 
+            el.addEventListener( 'mouseleave', function() {
+                path.animate( { 'path' : pathConfig.from }, speed, easing );
+            } );
+        } );
+    }
+ 
+    init();
+ 
+})();
+		</script>
+	</body>
+</html>
