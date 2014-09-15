@@ -96,7 +96,7 @@ section{
 	}
 	.wi{
 		font-size:2.5em;
-		padding: 15% 15%;
+		padding: 15%;
 	}
 }
 /*--- weather icon --*/
@@ -135,6 +135,22 @@ section{
 }
 
 /*--- screen --*/
+
+@media only screen and (max-width: 1000px) and (min-width: 768px){
+	section i.wi{
+		font-size: 7em;
+	}
+	.forecast{
+		li{
+			font-size: 0.6em;
+			span{
+				padding:3%;
+			}
+		}
+		
+	}
+}
+
 @media only screen and (max-width: 768px){
 	section{
 		i.wi{
@@ -173,4 +189,122 @@ section{
 			}
 		}
 	}
+}
+@media only screen and (min-width: 1500px){
+	section{
+		h1{
+			font-size: 2.5em;
+		}
+		h3{
+			font-size: 2.5em;
+			margin-bottom: 10%;
+		}
+		p{
+			font-size: 1.25em;
+		}
+	}
+
+	.forecast{
+		li {
+			span{
+				font-size: 1.5em;
+				&:nth-child(2){
+					margin-bottom: 16%;
+				}
+			}
+			.wi{
+				font-size: 4em;
+				padding: 17%
+			}
+		}
+	}
+}
+@media only screen and (max-width: 640px){
+	section{
+		width: 33.3%;
+	}
+}
+@media only screen and (max-width: 480px){
+	header h1{
+		font-size: 1.5em;
+	}
+	section{
+		width: 50%;
+		i.wi{
+			margin-bottom:8%;
+			margin-top:18%;
+			font-size:4em;
+		}
+		h3{
+			margin-bottom:0.3em;
+			margin-top:0;
+			font-size:1.5em;
+		}
+		p{
+			font-size: 0.9em;
+		}
+	}
+	.forecast {
+		li {
+		font-size: 0.65em;
+			.wi{
+				font-size:3em;
+				margin-top:5%;
+				margin-bottom:2%;
+			}
+		}
+	}
+}
+@media only screen and (max-width: 360px){
+	header{
+		display: none;
+	}
+	section{
+		width: 100%;
+		i.wi{
+			font-size: 9em;
+			margin-top:7%;
+			margin-bottom: 9%;
+		}
+		h1{
+			font-size: 2.5em;
+		}
+		h3{
+			font-size: 2.75em;
+			margin-bottom: 4%;
+		}
+		p{
+			font-size:1.25em;
+			margin-bottom:6%;
+		}
+		
+	}
+	.forecast{
+		margin-bottom: 3%;
+			li{
+				width: 27%;
+				font-size: 0.65em;
+				margin: 4% 0.25% 0% 1.5%;
+				padding: 1%;
+					span{
+						font-size: 1.5em;
+						padding: 3%;
+						position: relative;
+						display: inline-block;
+						&:nth-child(2){
+							margin-top:0;
+							margin-bottom: 0%;
+							float: right;
+						}
+					}
+					
+					.wi{
+						font-size: 4em;
+						margin: 4% 9%;
+						padding: 7% 13%;
+						clear: both;
+					}
+			}
+	}
+	
 }
