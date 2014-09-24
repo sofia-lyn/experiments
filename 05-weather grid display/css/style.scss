@@ -1,0 +1,386 @@
+/*--- vartiables --*/
+$lato: 'Lato'; //font-weight- 300(light), 400(normal), 700(bold), 900(ultra bold)
+
+//color
+$melbourne: #9799cc;
+$sydney:#ff8585;
+$canberra:#ffc154;
+$brisbane:#f3d957;
+$perth: #6ae69c;
+$adelaide:#40c2de;
+$hobart:#418cbc;
+$darwin:#dd7357;
+/***** general *******/
+body{
+	background-color: #e7e7e7;
+
+}
+.wrapper{
+	width: 100%;
+	position: relative;
+	perspective: 800px;
+	perspective-origin: 50% 25%;
+	.device{
+		position: relative;
+		width: 19%;
+		margin: 20% auto;
+		transition: all 0.3s ease;
+		transform-style: preserve-3d;
+		-webkit-transform-style: preserve-3d;
+		section{
+			// margin: 85px 0 0 20px;
+
+		}
+
+	}
+	.grid{
+		position: absolute;
+		width: 100%;
+		left: 41%;
+		margin-left: -400px;
+		height: 100%;
+		z-index: 1000;
+		top: 0;
+		opacity: 0;
+		transform-style: preserve-3d;
+		-webkit-transform-style: preserve-3d;
+		transition: all 0.3s ease;
+		transform: translateZ(-300px);
+		pointer-events:none;
+		section{
+			position: relative;
+			float: left;
+			margin: 10px 5px;
+			width: 23%;
+			cursor: pointer;
+			padding: 0.5%;
+			.overlay{
+				position: absolute;
+				height: 80%;
+				width: 77%;
+				left: 0;
+				top: 0;
+				text-transform: uppercase;
+				padding: 3em 1em 0;
+				z-index: 100;
+				color: #ddd;
+				background: rgba(0, 0, 0, 0.7);
+				font-weight: 400;
+				font-size: 2em;
+				opacity: 0;
+				-webkit-transform:translateY(-5px);
+				transition: all 0.2s ease;
+				cursor: pointer;
+				&:hover{
+					opacity: 1;
+					transform: translateY(0);
+					-webkit-transform: translateY(0);
+				}
+			}
+			
+		}
+	}
+}
+
+.gridview {
+	.device{
+	transform: translateZ(-350px);
+	-webkit-transform: translateZ(-350px);
+	opacity: 0.6;
+	}
+	.grid{
+	transform: translateZ(0px);
+	-webkit-transform: translateZ(-350px);
+	opacity: 1;	
+	pointer-events:auto;
+	}
+}
+
+/***** type *******/
+h1, h2, h3, h4, h5, h6, p, ul, li, .overlay{
+	font-family: $lato, sans-serif;
+}
+h1{
+	font-size: 1.75em;
+	font-weight: 400;
+	margin-bottom: 0.15em;
+}
+h3{
+	font-weight: 900;
+	font-size: 2em;
+	margin-bottom: 1em;
+	margin-top:0.5em;
+}
+// header {
+// 	display: block;
+// 	background-color: #e7e7e7;
+// 	text-align: center;
+// 	padding: 0;
+// 	margin: 2%;
+// 	h1{
+// 		font-weight: 300;
+// 	}
+// }
+
+/*--- weather sections --*/
+
+section{
+	display: inline-block;
+	width: 290px;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+
+	i.wi{
+		font-size: 8em;
+		margin: 23% 10% 16%;
+	}
+	
+	h3{
+		letter-spacing: 1px;
+	}
+	p{
+		margin:0 0 1em;
+		font-weight: 300;
+	}
+	ul{
+		margin: 0;
+		padding: 0;
+	}
+	li{
+		list-style: none;
+		list-style-position: inside;
+	}
+}
+
+/*--- forecast days --*/
+.forecast li{
+	display: inline-block;
+	background-color: rgba(250,250,250, 0.4);
+	margin: 1% 0.25% 5% 1.5%;
+	font-size:0.75em;
+	width: 29%;
+	span {
+		padding:5% 5%;
+		&:first-child{
+			float:left;
+		}
+		&:nth-child(2){
+			float:right;
+			margin-bottom: 12%;
+		}
+	}
+	.wi{
+		font-size:2.5em;
+		padding: 15%;
+	}
+}
+/*--- weather icon --*/
+
+
+/*--- cities --*/
+
+#melb, #melb2{
+	background-color:$melbourne; 
+	
+}
+#syd{
+	background-color: $sydney;
+}
+#canb{
+	background-color: $canberra;
+}
+#ban{
+	background-color: $brisbane;
+	.forecast li{
+		background-color: rgba(253,240,175, 0.5);
+
+	}
+}
+#perth{
+	background-color: $perth;
+}
+#ade{
+	background-color: $adelaide;
+}
+#hob{
+	background-color: $hobart;
+}
+#dar{
+	background-color: $darwin;
+}
+
+// /*--- screen --*/
+
+// @media only screen and (max-width: 1000px) and (min-width: 768px){
+// 	section i.wi{
+// 		font-size: 7em;
+// 	}
+// 	.forecast{
+// 		li{
+// 			font-size: 0.6em;
+// 			span{
+// 				padding:3%;
+// 			}
+// 		}
+		
+// 	}
+// }
+
+// @media only screen and (max-width: 768px){
+// 	section{
+// 		i.wi{
+// 			font-size: 5em;
+// 		}
+// 		h1{
+// 			font-size: 1.5em;
+// 		}
+// 		h3{
+// 			font-size: 1.6em;
+// 			letter-spacing: 2px;
+// 		}
+// 		p{
+// 			font-size: 1em;
+// 		}
+// 	}
+// 	.forecast {
+// 		margin-bottom: 8%;
+// 		li{
+// 			width: 87%;
+// 			margin: 2% 7%;
+// 			.wi{
+// 				padding: 3% 8% 6%;
+// 				margin: 8% 2% 3%;
+// 				float: right;
+// 				font-size:3.5em;
+// 			}
+// 			span{
+// 				position: absolute;
+// 				display: block;
+// 				font-size: 1.4em;
+// 				&:nth-child(2){
+// 					float:left;
+// 					margin-top:11%;
+// 					}
+// 			}
+// 		}
+// 	}
+// }
+// @media only screen and (min-width: 1500px){
+// 	section{
+// 		h1{
+// 			font-size: 2.5em;
+// 		}
+// 		h3{
+// 			font-size: 2.5em;
+// 			margin-bottom: 10%;
+// 		}
+// 		p{
+// 			font-size: 1.25em;
+// 		}
+// 	}
+
+// 	.forecast{
+// 		li {
+// 			span{
+// 				font-size: 1.5em;
+// 				&:nth-child(2){
+// 					margin-bottom: 16%;
+// 				}
+// 			}
+// 			.wi{
+// 				font-size: 4em;
+// 				padding: 17%
+// 			}
+// 		}
+// 	}
+// }
+// @media only screen and (max-width: 640px){
+// 	section{
+// 		width: 33.3%;
+// 	}
+// }
+// @media only screen and (max-width: 480px){
+// 	header h1{
+// 		font-size: 1.5em;
+// 	}
+// 	section{
+// 		width: 50%;
+// 		i.wi{
+// 			margin-bottom:8%;
+// 			margin-top:18%;
+// 			font-size:4em;
+// 		}
+// 		h3{
+// 			margin-bottom:0.3em;
+// 			margin-top:0;
+// 			font-size:1.5em;
+// 		}
+// 		p{
+// 			font-size: 0.9em;
+// 		}
+// 	}
+// 	.forecast {
+// 		li {
+// 		font-size: 0.65em;
+// 			.wi{
+// 				font-size:3em;
+// 				margin-top:5%;
+// 				margin-bottom:2%;
+// 			}
+// 		}
+// 	}
+// }
+// @media only screen and (max-width: 360px){
+// 	header{
+// 		display: none;
+// 	}
+// 	section{
+// 		width: 100%;
+// 		i.wi{
+// 			font-size: 8em;
+// 			margin-top:13%;
+// 			margin-bottom: 7%;
+// 		}
+// 		h1{
+// 			font-size: 2.5em;
+// 		}
+// 		h3{
+// 			font-size: 2.75em;
+// 			margin-bottom: 4%;
+// 		}
+// 		p{
+// 			font-size:1.25em;
+// 			margin-bottom:6%;
+// 		}
+		
+// 	}
+// 	.forecast{
+// 		margin-bottom: 3%;
+// 			li{
+// 				width: 27%;
+// 				font-size: 0.65em;
+// 				margin: 4% 0.25% 0% 1.5%;
+// 				padding: 1%;
+// 					span{
+// 						font-size: 1.5em;
+// 						padding: 3%;
+// 						position: relative;
+// 						display: inline-block;
+// 						&:nth-child(2){
+// 							margin-top:0;
+// 							margin-bottom: 0%;
+// 							float: right;
+// 						}
+// 					}
+					
+// 					.wi{
+// 						font-size: 4em;
+// 						margin: 4% 9%;
+// 						padding: 7% 13%;
+// 						clear: both;
+// 					}
+// 			}
+// 	}
+	
+// }
