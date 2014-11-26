@@ -1,0 +1,233 @@
+//@import, ruby-esque #{$variable}
+// $variables
+$red: #e74d3c;
+$white: #ffffff;
+$light-gray: rgba(255, 255, 255, 0.1);
+$dark-gray: rgba(0, 0, 0, 0.4);
+//% @extend
+
+//@mixin @include
+@mixin tranform-style($x){
+	-webkit-transform-style: $x;
+	-moz-transform-style: $x;
+	transform-style: $x;
+}
+@mixin perspective($p){
+	-webkit-perspective: $p;
+	-moz-perspective: $p;
+	perspective: $p;
+}
+@mixin transition($s){
+	-webkit-transition:$s;
+	-moz-transition: $s;
+	transition: $s;
+}
+@mixin transform-ss($s1, $s2, $sk1, $sk2){
+	-webkit-transform: scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg);
+    -moz-transform: scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg);
+    transform: scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg);
+}
+@mixin transform-tss( $t1, $s1, $s2, $sk1, $sk2){
+	-webkit-transform:  translateY($t1)scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg) ;
+    -moz-transform: translateY($t1) scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg);
+    transform: translateY($t1) scale($s1, $s2) skew(#{$sk1}deg, #{$sk2}deg) ;
+}
+@mixin transform-tr($t1, $r){
+	-webkit-transform:translateY($t1) rotateX(#{$r}deg);
+	-moz-transform:translateY($t1) rotateX(#{$r}deg);
+	transform:translateY($t1) rotateX(#{$r}deg);
+}
+@mixin transformRY($r){
+	-webkit-transform:rotateY(#{$r}deg);
+	-moz-transform:rotateY(#{$r}deg);
+	transform:rotateY(#{$r}deg);
+}
+@mixin transformRX($r){
+	-webkit-transform:rotateX(#{$r}deg);
+	-moz-transform:rotateX(#{$r}deg);
+	transform:rotateX(#{$r}deg);
+}
+@mixin transform-origin($o1, $o2){
+	-webkit-transform-origin: $o1 $o2;
+	-moz-transform-origin: $o1 $o2;
+	transform-origin: $o1 $o2;
+
+}
+@mixin gray-shadow($g1, $g2, $g3, $gb1, $gb2, $gb3){
+	text-shadow: #{$g1}px #{$g2}px #{$g3}px hsla(360, 100%, 100%, 0.1),
+		#{$gb1}px #{$gb2}px #{$gb3}px hsla(0, 0%, 0%, 0.4);
+}
+
+// extend
+%layer{
+	text-shadow:
+	1px 2px 0px $red,
+	0 0 0 hsla(0, 0%, 0%, 0.3),
+	1px 0px 1px $red;
+}
+
+//@function
+@function letter-w($w){
+	@return (100% / $w);
+}
+
+body{
+	font-family: 'Ubuntu', sans-serif;	margin: 0;
+	padding: 0;
+}
+
+.grid{
+	margin: 0;
+	padding: 0;
+	position: relative;
+	width: 100%;
+	list-style: none;
+	text-transform: uppercase;
+	li{
+		text-align: center;
+		float: left;
+		max-height: 290px;
+		width: letter-w(6);
+		@media (max-width: 880px){
+			width: letter-w(5);
+		}
+		@media (max-width: 768px){
+			width: letter-w(4);
+		}
+		@media (max-width: 600px){
+			width: letter-w(3);
+		}
+		@media (max-width: 480px ){
+			width: letter-w(2);
+		}
+		span{
+			display: inline-block;
+			font-weight: bold;
+			font-size: 12em;
+			line-height: 1;
+			position: relative;
+			color: rgba($red, 0.6);
+			@include tranform-style(preserve-3d);
+			@include perspective(500px);
+			z-index: 1;
+			&:before, &:after{
+				position: absolute;
+				content: attr(data-letter);
+				line-height: inherit;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				z-index: 2;
+				@include transition(all 0.3s);
+			}
+			&:before{
+				text-shadow: none;
+				color: hsla(0, 0%, 0%, 0.12);
+			}
+		}
+	}
+}
+
+/*---- left letter animation ---*/
+
+.letter-left{
+	span{
+		@extend %layer;
+		&:before{
+			@include transform-ss(1.08, 0.9, 0, 1);
+		}
+		&:after{
+			@include gray-shadow(1, 0, 0, 2, 0, 0);
+			@include transformRY(-15);
+			color:$white;	
+		}
+		&:before, &:after{
+			@include transform-origin(0, 50%);
+		}
+	}
+	&:hover span:before{
+		@include transform-ss(1.2, 1, 3, 19);
+	}
+	&:hover span:after{
+		@include transformRY(-40);
+		color: $white;
+	}
+}
+/*---- right letter animation ---*/
+.letter-right{
+	span{
+		@extend %layer;
+		&:before{
+			@include transform-ss(1.08, 0.9, 0, 1);
+		}
+		&:after{
+			@include gray-shadow(1, 0, 0, -2, 0, 0);
+			@include transformRY(15);
+			color:$white;	
+		}
+		&:before, &:after{
+			@include transform-origin(100%, 50%);
+		}
+	}
+	&:hover span:before{
+		@include transform-ss(1.2, 1, 3, -19);
+	}
+	&:hover span:after{
+		@include transformRY(40);
+		color: $white;
+	}
+}
+
+/*---- bottom letter animation ---*/
+.letter-bottom{
+	span{
+		@extend %layer;
+		&:before{
+			@include transform-ss(1, 1.05, 4, 0);
+		}
+		&:after{
+			@include gray-shadow(0, -1, 0, 0, 3, 1);
+        	@include transformRX(15);
+        	color: $white;
+		}
+		&:before, &:after{
+			@include transform-origin(50%, 0);
+		}
+	}
+	&:hover span:before{
+		@include transform-tss(-0.035em, 1, 1.2, 10, 0);
+		
+	}
+	&:hover span:after{
+		@include transform-tr(0.037em, 41);
+		color: $white;
+	}
+}
+
+/*---- top letter animation ---*/
+
+.letter-top{
+	span{
+		@extend %layer;
+		&:before{
+			@include transform-ss(1, 1, -4, 0);
+		}
+		&:after{
+			@include gray-shadow(0, 1, 0, 0, -1, 1);
+        	@include transformRX(-15);
+        	color: $white;
+		}
+		&:before, &:after{
+			@include transform-origin(50%, 100%);
+		}
+	}
+	&:hover span:before{
+		@include transform-tss(-0.035em, 1, 0.7, -10, 0);
+		
+	}
+	&:hover span:after{
+		@include transform-tr(-0.035em, -41);
+		color: $white;
+	}
+}
